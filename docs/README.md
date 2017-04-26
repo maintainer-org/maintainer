@@ -15,7 +15,7 @@ maintainer is a CLI app to help you to generate AUTHORS, CONTRIBUTING.md, CHANGE
 ```
 
 ### SEE ALSO
-* [maintainer changelog](maintainer_changelog.md)	 - A brief description of your command
+* [maintainer changelog](maintainer_changelog.md)	 - create changelog for your repo.
 * [maintainer config](maintainer_config.md)	 - A brief description of your command
 * [maintainer contributing](maintainer_contributing.md)	 - A brief description of your command
 * [maintainer contributor](maintainer_contributor.md)	 - A brief description of your command

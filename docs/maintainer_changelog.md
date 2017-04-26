@@ -1,16 +1,12 @@
 ## maintainer changelog
 
-A brief description of your command
+create changelog for your repo.
 
 ### Synopsis
 
 
-A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.
+changelog subcommand will generate CHANGELOG.md for your repo, it is supported
+via github_changelog_generator, so you need to install it before the subcommand is called.
 
 ```
 maintainer changelog
