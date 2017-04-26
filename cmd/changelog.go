@@ -15,11 +15,9 @@
 package cmd
 
 import (
-	"os/exec"
-
 	"log"
-
 	"os"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
