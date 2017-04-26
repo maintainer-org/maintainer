@@ -1,4 +1,4 @@
-// Copyright © 2017 NAME HERE <EMAIL ADDRESS>
+// Copyright © 2017 Ce Gao <ce.gao@outlook.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,17 @@
 package cmd
 
 import (
-	"fmt"
+	"os/exec"
+
+	"log"
+
+	"os"
 
 	"github.com/spf13/cobra"
+)
+
+const (
+	changelogGeneratorCmd string = "github_changelog_generator"
 )
 
 // changelogCmd represents the changelog command
@@ -31,8 +39,11 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("changelog called")
+		if err := run(); err != nil {
+			log.Fatalf("Error when creating changelog: %s", err)
+			return
+		}
+		log.Println("changelog created successfully.")
 	},
 }
 
@@ -49,4 +60,19 @@ func init() {
 	// is called directly, e.g.:
 	// changelogCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
+}
+
+func run() error {
+	cmd := exec.Command(changelogGeneratorCmd)
+	cmd.Stderr = os.Stdout
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// checkRequirements checks whether changelogGeneratorCmd is installed.
+func checkRequirements() error {
+	// TODO
+	return nil
 }
