@@ -20,6 +20,7 @@ $ maintainer --help
 
 ## The Docker Way
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/gaocegege/maintainer.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
 [![](https://images.microbadger.com/badges/image/gaocegege/maintainer.svg)](https://microbadger.com/images/gaocegege/maintainer "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/gaocegege/maintainer.svg)](https://microbadger.com/images/gaocegege/maintainer "Get your own version badge on microbadger.com")
 
