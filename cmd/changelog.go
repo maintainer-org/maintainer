@@ -31,7 +31,7 @@ const (
 // changelogCmd represents the changelog command
 var changelogCmd = &cobra.Command{
 	Use:   "changelog",
-	Short: "generate changelog for your repository.",
+	Short: "Generate CHANGELOG.md for your repository.",
 	Long: `changelog subcommand will generate CHANGELOG.md for your repository, it is supported
 via github_changelog_generator, so you need to install it before the subcommand is called.
 

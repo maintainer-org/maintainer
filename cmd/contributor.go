@@ -34,7 +34,7 @@ const (
 // contributorCmd represents the contributor command
 var contributorCmd = &cobra.Command{
 	Use:   "contributor",
-	Short: "generate AUTHORS.md for your repository.",
+	Short: "Generate AUTHORS.md for your repository.",
 	Long: `contributor subcommand will generate AUTHORS.md. It gives the contributors more 
 passion to contribute.`,
 	Run: func(cmd *cobra.Command, args []string) {

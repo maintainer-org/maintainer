@@ -1,6 +1,6 @@
 ## maintainer contributor
 
-generate AUTHORS.md for your repository.
+Generate AUTHORS.md for your repository.
 
 ### Synopsis
 

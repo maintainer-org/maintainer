@@ -1,6 +1,6 @@
 ## maintainer changelog
 
-generate changelog for your repository.
+Generate CHANGELOG.md for your repository.
 
 ### Synopsis
 

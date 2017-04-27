@@ -29,7 +29,7 @@ const (
 // contributingCmd represents the contributing command
 var contributingCmd = &cobra.Command{
 	Use:   "contributing",
-	Short: "generate CONTRIBUTING.md for your repository.",
+	Short: "Generate CONTRIBUTING.md for your repository.",
 	Long: `contributing subcommand will generate CONTRIBUTING.md for your repository, now
 this file is a general version.
 
