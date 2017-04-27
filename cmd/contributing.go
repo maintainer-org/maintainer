@@ -100,21 +100,21 @@ We follow a rough convention for commit messages that is designed to answer two
 questions: what changed and why. The subject line should feature the what and
 the body of the commit should describe the why.
 
-<code>
+<pre><code>
 store/localstore: add comment for variable declaration.
 
 Improve documentation.
-</code>
+</code></pre>
 
 The format can be described more formally as follows:
 
-<code>
-<subsystem>: <what changed>
-<BLANK LINE>
-<why this change was made>
-<BLANK LINE>
-<footer>(optional)
-</code>
+<pre><code>
+subsystem: what changed
+BLANK LINE
+why this change was made
+BLANK LINE
+footer(optional)
+</code></pre>
 
 The first line is the subject and should be no longer than 70 characters, the
 second line is always blank, and other lines should be wrapped at 80 characters.
