@@ -58,12 +58,15 @@ func contributingRun() error {
 	if _, err := f.WriteString(contributing()); err != nil {
 		return err
 	}
+	// Write footer to the CONTRIBUTING.md.
+	if _, err := f.WriteString(Footer()); err != nil {
+		return err
+	}
 	return nil
 }
 
 func contributing() string {
-	return `
-# How to contribute
+	return `# How to contribute
 
 This document outlines some of the conventions on development workflow, commit message formatting, contact points and other
 resources to make it easier to get your contribution accepted.
@@ -125,5 +128,6 @@ If the change affects many subsystems, you can use * instead, like *:.
 For the why part, if no specific reason for the change,
 you can use one of some generic reasons like "Improve documentation.",
 "Improve performance.", "Improve robustness.", "Improve test coverage."
+
 `
 }

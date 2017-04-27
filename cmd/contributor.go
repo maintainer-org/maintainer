@@ -87,7 +87,8 @@ func contributorRun() error {
 			return err
 		}
 	}
-	if _, err := f.WriteString(util.AuthorFooter()); err != nil {
+	// Write footer to the AUTHORS.md.
+	if _, err := f.WriteString(Footer()); err != nil {
 		return err
 	}
 	return nil
