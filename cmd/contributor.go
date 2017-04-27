@@ -61,6 +61,7 @@ func contributorRun() error {
 
 	// Parse output and remove duplicates.
 	outputStr := string(output)
+	outputStr = outputStr[:len(outputStr)-1]
 	contributors := strings.Split(outputStr, "\n")
 	dict := make(map[string]int)
 	for _, contributor := range contributors {
