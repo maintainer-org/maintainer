@@ -39,7 +39,7 @@ contributor subcommand will generate AUTHORS just like [moby/moby](https://githu
 
 ### Recommend badges for you (In Future)
 
-People likes badges. badge subcommand will recommend badges for you based on which languages the repository is written in.
+People :heart: badges. badge subcommand will recommend badges for you based on which languages the repository is written in.
 
 ## Docs
 
