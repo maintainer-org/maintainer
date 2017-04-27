@@ -4,6 +4,8 @@ Help you to be a qualified maintainer :)
 
 Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTRIBUTING.md and so on based on the repository in GitHub. It makes your repository more contributor-friendly.
 
+[![asciicast](https://asciinema.org/a/117832.png)](https://asciinema.org/a/117832)
+
 ## Installation
 
 ```
