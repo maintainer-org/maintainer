@@ -29,12 +29,14 @@ const (
 // changelogCmd represents the changelog command
 var changelogCmd = &cobra.Command{
 	Use:   "changelog",
-	Short: "create changelog for your repo.",
-	Long: `changelog subcommand will generate CHANGELOG.md for your repo, it is supported
-via github_changelog_generator, so you need to install it before the subcommand is called.`,
+	Short: "generate changelog for your repository.",
+	Long: `changelog subcommand will generate CHANGELOG.md for your repository, it is supported
+via github_changelog_generator, so you need to install it before the subcommand is called.
+
+In the future, maintainer will support install this dependency automatically.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := run(); err != nil {
-			log.Fatalf("Error when creating changelog: %s", err)
+		if err := changelogRun(); err != nil {
+			log.Fatalf("Error when creating changelog: %s\n", err)
 			return
 		}
 		log.Println("changelog created successfully.")
@@ -56,7 +58,7 @@ func init() {
 
 }
 
-func run() error {
+func changelogRun() error {
 	cmd := exec.Command(changelogGeneratorCmd)
 	cmd.Stderr = os.Stdout
 	if err := cmd.Run(); err != nil {

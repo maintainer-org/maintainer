@@ -15,38 +15,84 @@
 package cmd
 
 import (
-	"fmt"
+	"log"
+	"os"
+	"os/exec"
+	"strings"
 
+	"github.com/gaocegege/maintainer/util"
 	"github.com/spf13/cobra"
+)
+
+const (
+	gitCmd        string = "git"
+	gitLogArgs    string = "log"
+	gitFormatArgs string = "--format='%aN <%aE>'"
+	authorFile    string = "AUTHORS.md"
 )
 
 // contributorCmd represents the contributor command
 var contributorCmd = &cobra.Command{
 	Use:   "contributor",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "generate AUTHORS.md for your repository.",
+	Long: `contributor subcommand will generate AUTHORS.md. It gives the contributors more 
+passion to contribute.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("contributor called")
+		if err := contributorRun(); err != nil {
+			log.Fatalf("Error when creating %s: %s\n", authorFile, err)
+			return
+		}
+		log.Printf("%s created successfully.\n", authorFile)
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(contributorCmd)
+}
 
-	// Here you will define your flags and configuration settings.
+// contributorRun runs the real logic to generate AUTHORS.md.
+func contributorRun() error {
+	// git log --format='%aN <%aE>'.
+	gitLogCmd := exec.Command(gitCmd, gitLogArgs, gitFormatArgs)
+	output, err := gitLogCmd.Output()
+	if err != nil {
+		return err
+	}
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// contributorCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// Parse output and remove duplicates.
+	outputStr := string(output)
+	contributors := strings.Split(outputStr, "\n")
+	dict := make(map[string]int)
+	for _, contributor := range contributors {
+		contributor = strings.Trim(contributor, "'")
+		if _, ok := dict[contributor]; ok != true {
+			dict[contributor] = 1
+		}
+	}
 
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// contributorCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// Output results to AUTHORS.md.
+	f, err := util.OpenFile(authorFile, os.O_RDWR, os.ModePerm)
+	if err != nil {
+		return err
+	}
+	if _, err := f.WriteString(authorHeader()); err != nil {
+		return err
+	}
+	for k := range dict {
+		if _, err := f.WriteString(k); err != nil {
+			return err
+		}
+		if _, err := f.WriteString("\n"); err != nil {
+			return err
+		}
+	}
+	if _, err := f.WriteString(util.AuthorFooter()); err != nil {
+		return err
+	}
+	return nil
+}
 
+// authorHeader returns the header to be written into AUTHORS.md.
+func authorHeader() string {
+	return "# Authors\n\n"
 }
