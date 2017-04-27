@@ -19,7 +19,9 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/gaocegege/maintainer/config"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 const (
@@ -59,9 +61,14 @@ func init() {
 }
 
 func changelogRun() error {
-	cmd := exec.Command(changelogGeneratorCmd)
+	token := viper.GetString(config.Token)
+	cmd := exec.Command(changelogGeneratorCmd, "-t", token)
+	// Set STDERR and STDOUT to STDOUT of maintainer.
 	cmd.Stderr = os.Stdout
 	cmd.Stdout = os.Stdout
+	for _, env := range cmd.Env {
+		log.Println(env)
+	}
 	if err := cmd.Run(); err != nil {
 		return err
 	}
