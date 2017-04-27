@@ -16,7 +16,6 @@ package cmd
 
 import (
 	"log"
-	"os"
 
 	"github.com/gaocegege/maintainer/util"
 	"github.com/spf13/cobra"
@@ -51,7 +50,7 @@ func init() {
 // contributingRun runs the real logic to generate CONTRIBUTING.md.
 func contributingRun() error {
 	// Output results to AUTHORS.md.
-	f, err := util.OpenFile(contributingFile, os.O_RDWR, os.ModePerm)
+	f, err := util.OpenFile(contributingFile)
 	if err != nil {
 		return err
 	}

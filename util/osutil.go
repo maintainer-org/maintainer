@@ -16,14 +16,14 @@ package util
 
 import "os"
 
-// OpenFile opens file from 'name', and create one if not exist.
-func OpenFile(fileName string, flag int, perm os.FileMode) (*os.File, error) {
+// OpenFile opens file from 'name', delete it if exists firstly.
+func OpenFile(fileName string) (*os.File, error) {
 	var file *os.File
 	var err error
 
-	file, err = os.OpenFile(fileName, flag, perm)
-	if err != nil && os.IsNotExist(err) {
-		file, err = os.Create(fileName)
+	file, err = os.Create(fileName)
+	if err != nil && os.IsExist(err) {
+		err = os.Remove(fileName)
 		if err != nil {
 			return nil, err
 		}

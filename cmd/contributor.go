@@ -16,7 +16,6 @@ package cmd
 
 import (
 	"log"
-	"os"
 	"os/exec"
 	"strings"
 
@@ -72,7 +71,7 @@ func contributorRun() error {
 	}
 
 	// Output results to AUTHORS.md.
-	f, err := util.OpenFile(authorFile, os.O_RDWR, os.ModePerm)
+	f, err := util.OpenFile(authorFile)
 	if err != nil {
 		return err
 	}
