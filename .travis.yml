@@ -17,7 +17,5 @@ script:
 after_script: 
   - ./scripts/build-for-alpine.sh
   - docker build -t gaocegege/maintainer .
-
-after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker push gaocegege/maintainer
