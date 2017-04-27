@@ -1,12 +1,13 @@
 # Change Log
 
-## [Unreleased](https://github.com/gaocegege/maintainer/tree/HEAD)
-
-[Full Changelog](https://github.com/gaocegege/maintainer/compare/v1.0.1...HEAD)
+## [v1.0.2](https://github.com/gaocegege/maintainer/tree/v1.0.2) (2017-04-27)
+[Full Changelog](https://github.com/gaocegege/maintainer/compare/v1.0.1...v1.0.2)
 
 **Closed issues:**
 
 - redirect github\_changelog\_generator output [\#3](https://github.com/gaocegege/maintainer/issues/3)
+- There is one empty item when author generation. [\#2](https://github.com/gaocegege/maintainer/issues/2)
+- Support maintainer config [\#1](https://github.com/gaocegege/maintainer/issues/1)
 
 ## [v1.0.1](https://github.com/gaocegege/maintainer/tree/v1.0.1) (2017-04-27)
 

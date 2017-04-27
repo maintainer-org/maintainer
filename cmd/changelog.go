@@ -28,6 +28,10 @@ const (
 	changelogGeneratorCmd string = "github_changelog_generator"
 )
 
+var (
+	tokenValue *string
+)
+
 // changelogCmd represents the changelog command
 var changelogCmd = &cobra.Command{
 	Use:   "changelog",
@@ -48,20 +52,18 @@ In the future, maintainer will support install this dependency automatically.`,
 func init() {
 	RootCmd.AddCommand(changelogCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// changelogCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// changelogCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
+	tokenValue = changelogCmd.PersistentFlags().String(config.Token, "", "The token in GitHub."+
+		"To make more than 50 requests per hour the GitHub token is required."+
+		"You can generate it at: https://github.com/settings/tokens/new.")
 }
 
 func changelogRun() error {
 	token := viper.GetString(config.Token)
+	// Override token in CLI.
+	if *tokenValue != "" {
+		log.Println("Found token in flag, override it.")
+		token = *tokenValue
+	}
 	cmd := exec.Command(changelogGeneratorCmd, "-t", token)
 	// Set STDERR and STDOUT to STDOUT of maintainer.
 	cmd.Stderr = os.Stdout

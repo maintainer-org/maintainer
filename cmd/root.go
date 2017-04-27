@@ -53,6 +53,7 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
+	viper.SetEnvPrefix("MAINTAINER")   // Set the environment variable prefix.
 	viper.SetConfigName(".maintainer") // name of config file (without extension)
 	viper.AddConfigPath("$HOME")       // adding home directory as first search path
 	viper.AutomaticEnv()               // read in environment variables that match
