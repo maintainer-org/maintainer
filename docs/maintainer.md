@@ -11,12 +11,10 @@ maintainer is a CLI app to help you to generate AUTHORS, CONTRIBUTING.md, CHANGE
 
 ```
       --config string   config file (default is $HOME/.maintainer.yaml)
-  -t, --toggle          Help message for toggle
 ```
 
 ### SEE ALSO
 * [maintainer changelog](maintainer_changelog.md)	 - generate changelog for your repository.
-* [maintainer config](maintainer_config.md)	 - Config the maintainer CLI.
 * [maintainer contributing](maintainer_contributing.md)	 - generate CONTRIBUTING.md for your repository.
 * [maintainer contributor](maintainer_contributor.md)	 - generate AUTHORS.md for your repository.
 
