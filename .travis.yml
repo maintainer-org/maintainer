@@ -1,0 +1,10 @@
+language: go
+
+go_import_path: github.com/gaocegege/maintainer
+
+go:
+  - 1.8
+
+script: 
+  - go install .
+  - maintainer --help
