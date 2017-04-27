@@ -1,5 +1,10 @@
 language: go
 
+sudo: required
+
+services:
+  - docker
+
 go_import_path: github.com/gaocegege/maintainer
 
 go:
@@ -8,3 +13,11 @@ go:
 script: 
   - go install .
   - maintainer --help
+
+after_script: 
+  - ./scripts/build-for-alpine.sh
+  - docker build -t gaocegege/maintainer .
+
+after_success:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push gaocegege/maintainer

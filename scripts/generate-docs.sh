@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ROOT=$(dirname "${BASH_SOURCE}")/..
 
 cd ${ROOT}

@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/gaocegege/maintainer)](https://goreportcard.com/report/github.com/gaocegege/maintainer)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/gaocegege/maintainer)
 [![Build Status](https://travis-ci.org/gaocegege/maintainer.svg?branch=master)](https://travis-ci.org/gaocegege/maintainer)
-
+[![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
 
 Help you to be a qualified maintainer :)
 
@@ -13,9 +13,19 @@ Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTR
 
 ## Installation
 
-```
+```bash
 $ go get github.com/gaocegege/maintainer
 $ maintainer --help
+```
+
+## The Docker Way
+
+[![](https://images.microbadger.com/badges/image/gaocegege/maintainer.svg)](https://microbadger.com/images/gaocegege/maintainer "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/gaocegege/maintainer.svg)](https://microbadger.com/images/gaocegege/maintainer "Get your own version badge on microbadger.com")
+
+```bash
+$ docker pull gaocegege/maintainer
+$ docker run --rm -v $(pwd):/workdir gaocegege/maintainer:latest --help
 ```
 
 ## Config
