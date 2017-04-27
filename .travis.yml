@@ -15,7 +15,4 @@ script:
   - maintainer --help
 
 after_script: 
-  - ./scripts/build-for-alpine.sh
-  - docker build -t gaocegege/maintainer .
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker push gaocegege/maintainer
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/master-build-in-travis.sh; fi'

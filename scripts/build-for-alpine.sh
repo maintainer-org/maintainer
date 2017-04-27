@@ -14,4 +14,5 @@ docker run --rm \
     golang:1.8-alpine \
     sh -c "go build ."
 echo "Build successfully."
+
 cd - > /dev/null
