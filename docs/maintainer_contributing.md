@@ -1,6 +1,6 @@
 ## maintainer contributing
 
-A brief description of your command
+generate CONTRIBUTING.md for your repository.
 
 ### Synopsis
 
