@@ -14,6 +14,12 @@ In the future, maintainer will support install this dependency automatically.
 maintainer changelog
 ```
 
+### Options
+
+```
+      --token string   The token in GitHub.To make more than 50 requests per hour the GitHub token is required.You can generate it at: https://github.com/settings/tokens/new.
+```
+
 ### Options inherited from parent commands
 
 ```
