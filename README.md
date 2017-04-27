@@ -18,6 +18,24 @@ $ go get github.com/gaocegege/maintainer
 $ maintainer --help
 ```
 
+## Config
+
+### Location
+
+`$HOME/.maintainer.yml`
+
+### Configuration
+
+Get the token from https://github.com/settings/tokens/new?description=Maintainer%20CLI%20token, you only need "repo" scope for private repositories.
+
+```yaml
+token: <Your Token for Maintainer CLI(40 digit)>
+```
+
+### Template
+
+[./.maintainer.yml.template](./.maintainer.yml.template)
+
 ## Features
 
 ### Generate CHANGELOG.md
