@@ -83,7 +83,7 @@ func contributorRun() error {
 		if _, err := f.WriteString(k); err != nil {
 			return err
 		}
-		if _, err := f.WriteString("\n"); err != nil {
+		if _, err := f.WriteString("\n\n"); err != nil {
 			return err
 		}
 	}
