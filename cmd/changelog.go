@@ -61,6 +61,7 @@ func init() {
 func changelogRun() error {
 	cmd := exec.Command(changelogGeneratorCmd)
 	cmd.Stderr = os.Stdout
+	cmd.Stdout = os.Stdout
 	if err := cmd.Run(); err != nil {
 		return err
 	}
