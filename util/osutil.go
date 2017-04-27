@@ -16,7 +16,7 @@ package util
 
 import "os"
 
-// OpenFile opens file from 'name', delete it if exists firstly.
+// OpenFile opens file from 'name', if it exists, delete it first.
 func OpenFile(fileName string) (*os.File, error) {
 	var file *os.File
 	var err error
