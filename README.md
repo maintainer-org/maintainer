@@ -9,13 +9,25 @@
 
 Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTRIBUTING.md and so on based on the repository in GitHub. It makes your repository more contributor-friendly.
 
-[![asciicast](https://asciinema.org/a/117832.png)](https://asciinema.org/a/117832)
-
 ## Installation
 
-```bash
+```text
 $ go get github.com/gaocegege/maintainer
 $ maintainer --help
+maintainer is a CLI app to help you to generate AUTHORS, CONTRIBUTING.md, CHANGELOG.md and so on.
+
+Usage:
+  maintainer [command]
+
+Available Commands:
+  changelog    Generate CHANGELOG.md for your repository.
+  contributing Generate CONTRIBUTING.md for your repository.
+  contributor  Generate AUTHORS.md for your repository.
+
+Flags:
+      --config string   config file (default is $HOME/.maintainer.yaml)
+
+Use "maintainer [command] --help" for more information about a command.
 ```
 
 ## The Docker Way
@@ -39,7 +51,9 @@ It is used in changelog subcommand, so there are three ways to config the token:
 * Or Set environment variable `MAINTAINER_TOKEN`.
 * Or Set the flag in changelog subcommand: `maintainer changelog --token <token>`. If you set it in command, it will override the configuration in config file and the environment variable.
 
-## Features
+## Features Preview
+
+[![asciicast](https://asciinema.org/a/117832.png)](https://asciinema.org/a/117832)
 
 ### Generate CHANGELOG.md
 
