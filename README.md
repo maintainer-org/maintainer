@@ -76,9 +76,9 @@ go run main.go <subcommand>
 
 ### Build Docker image
 
-Maintainer requires two steps to build a Docker image to reduce the size of image.
+Maintainer requires two steps to build a Docker image.
 
 1. `scripts/build-for-alphine.sh` builds `maintainer` in a Docker container which from `golang:1.8-alpine`. It mounts maintainer directory into the container so the `maintainer` built from code will visiable in host.
 1. `docker build -t maintainer .` builds real image from `Dockerfile`. It simply copys binary `maintainer` into the image and install some dependencies such as git and github_changelog_generator.
 
-This way is inspired by [caicloud/cyclone](https://github.com/caicloud/cyclone).
+This way is inspired by [caicloud/cyclone](https://github.com/caicloud/cyclone). It could reduce the size of image significantly.
