@@ -68,9 +68,6 @@ func changelogRun() error {
 	// Set STDERR and STDOUT to STDOUT of maintainer.
 	cmd.Stderr = os.Stdout
 	cmd.Stdout = os.Stdout
-	for _, env := range cmd.Env {
-		log.Println(env)
-	}
 	if err := cmd.Run(); err != nil {
 		return err
 	}
