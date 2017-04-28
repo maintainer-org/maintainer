@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/gaocegege/maintainer.svg?branch=master)](https://travis-ci.org/gaocegege/maintainer)
 [![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
 
-Help you to be a qualified maintainer :)
+:octocat: :man_technologist: Help you to be a qualified maintainer :)
 
 Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTRIBUTING.md and so on based on the repository in GitHub. It makes your repository more contributor-friendly.
 
@@ -58,7 +58,7 @@ In the future, maintainer will detect languages and generate corresponding docum
 
 contributor subcommand will generate AUTHORS just like [moby/moby](https://github.com/moby/moby/blob/master/AUTHORS) does. It gives the contributors more passion to contribute.
 
-### Recommend badges for you (In Future)
+### Recommend badges for you (Soon)
 
 People :heart: badges. badge subcommand will recommend badges for you based on which languages the repository is written in.
 
@@ -82,3 +82,8 @@ Maintainer requires two steps to build a Docker image.
 1. `docker build -t maintainer .` builds real image from `Dockerfile`. It simply copys binary `maintainer` into the image and install some dependencies such as git and github_changelog_generator.
 
 This way is inspired by [caicloud/cyclone](https://github.com/caicloud/cyclone). It could reduce the size of image significantly.
+
+## Acknowledgments
+
+* Thanks [github.com/spf13/cobra](https://github.com/spf13/cobra) for its powerful CLI generator.
+* Thanks [github_changelog_generator](https://github.com/skywinder/github-changelog-generator) which is the source of the idea.
