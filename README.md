@@ -31,21 +31,13 @@ $ docker run --rm -v $(pwd):/workdir gaocegege/maintainer:latest --help
 
 ## Config
 
-### Location
+There is only one configuration now: the token in GitHub. The token can be created from https://github.com/settings/tokens/new?description=Maintainer%20CLI%20token, you only need "repo" scope for private repositories.
 
-`$HOME/.maintainer.yml`
+It is used in changelog subcommand, so there are three ways to config the token:
 
-### Configuration
-
-Get the token from https://github.com/settings/tokens/new?description=Maintainer%20CLI%20token, you only need "repo" scope for private repositories.
-
-```yaml
-token: <Your Token for Maintainer CLI(40 digit)>
-```
-
-### Template
-
-[./.maintainer.yml.template](./.maintainer.yml.template)
+* Config `token` field in `$HOME/.maintainer.yml`. [./.maintainer.yml.template](./.maintainer.yml.template) is a template.
+* Or Set environment variable `MAINTAINER_TOKEN`.
+* Or Set the flag in changelog subcommand: `maintainer changelog --token <token>`. If you set it in command, it will override the configuration in config file and the environment variable.
 
 ## Features
 
@@ -62,7 +54,7 @@ contributing subcommand will generate CONTRIBUTING.md for your repository, now t
 
 In the future, maintainer will detect languages and generate corresponding documentation about programming language specific flow for contribution.
 
-### Generate AUTHORS
+### Generate AUTHORS.md
 
 contributor subcommand will generate AUTHORS just like [moby/moby](https://github.com/moby/moby/blob/master/AUTHORS) does. It gives the contributors more passion to contribute.
 
@@ -70,6 +62,23 @@ contributor subcommand will generate AUTHORS just like [moby/moby](https://githu
 
 People :heart: badges. badge subcommand will recommend badges for you based on which languages the repository is written in.
 
-## Docs
+## CLI references
 
 [./docs/README.md](./docs/README.md)
+
+## Development
+
+### Run from source code
+
+```bash
+go run main.go <subcommand>
+```
+
+### Build Docker image
+
+Maintainer requires two steps to build a Docker image to reduce the size of image.
+
+1. `scripts/build-for-alphine.sh` builds `maintainer` in a Docker container which from `golang:1.8-alpine`. It mounts maintainer directory into the container so the `maintainer` built from code will visiable in host.
+1. `docker build -t maintainer .` builds real image from `Dockerfile`. It simply copys binary `maintainer` into the image and install some dependencies such as git and github_changelog_generator.
+
+This way is inspired by [caicloud/cyclone](https://github.com/caicloud/cyclone).
