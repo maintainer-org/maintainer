@@ -23,9 +23,11 @@ Available Commands:
   changelog    Generate CHANGELOG.md for your repository.
   contributing Generate CONTRIBUTING.md for your repository.
   contributor  Generate AUTHORS.md for your repository.
+  readme       Generate README.md related text in your repository.
 
 Flags:
-      --config string   config file (default is $HOME/.maintainer.yaml)
+  --config string   config file (default is $HOME/.maintainer.yaml)
+  -h, --help            help for maintainer
 
 Use "maintainer [command] --help" for more information about a command.
 ```
@@ -71,6 +73,12 @@ In the future, maintainer will detect languages and generate corresponding docum
 ### Generate AUTHORS.md
 
 contributor subcommand will generate AUTHORS just like [moby/moby](https://github.com/moby/moby/blob/master/AUTHORS) does. It gives the contributors more passion to contribute.
+
+### Generate README.md related text
+
+readme subcommand contains some subcommands:
+
+* `toc` subcommand, which could generate table of contents(TOC) for README.md. It is supported with [gh-md-toc](https://github.com/ekalinin/github-markdown-toc), so you need to install it before the subcommand is called.
 
 ### Recommend badges for you (Soon)
 
