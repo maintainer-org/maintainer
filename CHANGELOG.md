@@ -1,5 +1,27 @@
 # Change Log
 
+## [Unreleased](https://github.com/gaocegege/maintainer/tree/HEAD)
+
+[Full Changelog](https://github.com/gaocegege/maintainer/compare/v1.0.4...HEAD)
+
+**Closed issues:**
+
+- Detect the language for CONTRIBUTING [\#8](https://github.com/gaocegege/maintainer/issues/8)
+
+## [v1.0.4](https://github.com/gaocegege/maintainer/tree/v1.0.4) (2017-05-01)
+[Full Changelog](https://github.com/gaocegege/maintainer/compare/v1.0.3...v1.0.4)
+
+**Closed issues:**
+
+- Fix Docker image because of gh-md-toc [\#12](https://github.com/gaocegege/maintainer/issues/12)
+- New subcommand: readme [\#9](https://github.com/gaocegege/maintainer/issues/9)
+
+**Merged pull requests:**
+
+- contributing: detect the language [\#15](https://github.com/gaocegege/maintainer/pull/15) ([gaocegege](https://github.com/gaocegege))
+- dockerfile: Add gh-md-toc support [\#13](https://github.com/gaocegege/maintainer/pull/13) ([gaocegege](https://github.com/gaocegege))
+- Readme toc subcommand [\#11](https://github.com/gaocegege/maintainer/pull/11) ([gaocegege](https://github.com/gaocegege))
+
 ## [v1.0.3](https://github.com/gaocegege/maintainer/tree/v1.0.3) (2017-04-28)
 [Full Changelog](https://github.com/gaocegege/maintainer/compare/v1.0.2...v1.0.3)
 
