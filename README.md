@@ -64,15 +64,21 @@ via github_changelog_generator, so you need to install it before the subcommand 
 
 See [here about how to install github_changelog_generator.](https://github.com/skywinder/github-changelog-generator#installation) In the future, maintainer will support install this dependency automatically.
 
+See [CHANGELOG.md](./CHANGELOG.md) as an example.
+
 ### Generate CONTRIBUTING.md
 
 contributing subcommand will generate CONTRIBUTING.md for your repository, now this file is a general version.
 
 In the future, maintainer will detect languages and generate corresponding documentation about programming language specific flow for contribution.
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) as an example.
+
 ### Generate AUTHORS.md
 
 contributor subcommand will generate AUTHORS just like [moby/moby](https://github.com/moby/moby/blob/master/AUTHORS) does. It gives the contributors more passion to contribute.
+
+See [AUTHORS.md](./AUTHORS.md) as an example.
 
 ### Generate README.md related text
 
@@ -86,7 +92,7 @@ People :heart: badges. badge subcommand will recommend badges for you based on w
 
 ## CLI references
 
-[./docs/README.md](./docs/README.md)
+[docs/README.md](./docs/README.md)
 
 ## Development
 
