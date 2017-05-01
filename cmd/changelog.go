@@ -20,6 +20,8 @@ import (
 	"os/exec"
 
 	"github.com/gaocegege/maintainer/config"
+	"github.com/gaocegege/maintainer/dep"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -58,6 +60,15 @@ func init() {
 }
 
 func changelogRun() error {
+	isInstalled, err := dep.ChangelogGenerator.IsInstalled()
+	if err != nil {
+		return err
+	}
+	if isInstalled != true {
+		if err = dep.ChangelogGenerator.Install(); err != nil {
+			return err
+		}
+	}
 	token := viper.GetString(config.Token)
 	// Override token in CLI.
 	if *tokenValue != "" {
@@ -68,7 +79,7 @@ func changelogRun() error {
 	// Set STDERR and STDOUT to STDOUT of maintainer.
 	cmd.Stderr = os.Stdout
 	cmd.Stdout = os.Stdout
-	if err := cmd.Run(); err != nil {
+	if err = cmd.Run(); err != nil {
 		return err
 	}
 	return nil
