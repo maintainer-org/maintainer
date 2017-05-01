@@ -17,6 +17,7 @@ package cmd
 import (
 	"log"
 
+	"github.com/gaocegege/maintainer/repo"
 	"github.com/gaocegege/maintainer/util"
 	"github.com/spf13/cobra"
 )
@@ -49,6 +50,11 @@ func init() {
 
 // contributingRun runs the real logic to generate CONTRIBUTING.md.
 func contributingRun() error {
+	repo, err := repo.NewRepository()
+	if err != nil {
+		log.Panicf("Error when read the information from local repository: %s\n", err)
+	}
+	log.Print(repo.String())
 	// Output results to AUTHORS.md.
 	f, err := util.OpenFile(contributingFile)
 	if err != nil {

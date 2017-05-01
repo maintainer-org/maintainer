@@ -20,13 +20,19 @@ import (
 
 	"log"
 
+	"github.com/gaocegege/maintainer/repo"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var (
+	cfgFile string
+	// Repo stores the information in the local repository.
+	Repo *repo.Repository
+)
 
-// This represents the base command when called without any subcommands
+// RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "maintainer",
 	Short: "Help you to be a qualified maintainer.",
@@ -61,5 +67,7 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		log.Println("Using config file:", viper.ConfigFileUsed())
+	} else {
+		log.Println("There is no config file defined.")
 	}
 }
