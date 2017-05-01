@@ -17,6 +17,14 @@
 			"Rev": "f12c6236fe7b5cf6bcf30e5935d08cb079d78334"
 		},
 		{
+			"ImportPath": "github.com/google/go-github/github",
+			"Rev": "94a3cd9f531888fe4a03487276c0adb887428e77"
+		},
+		{
+			"ImportPath": "github.com/google/go-querystring/query",
+			"Rev": "2a60fc2ba6c19de80291203597d752e9ba58e4c0"
+		},
+		{
 			"ImportPath": "github.com/hashicorp/hcl",
 			"Rev": "d8c773c4cba11b11539e3d45f93daeaa5dcf1fa1"
 		},
