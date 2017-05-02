@@ -22,7 +22,7 @@ import (
 var readmeCmd = &cobra.Command{
 	Use:   "readme",
 	Short: "Generate README.md related text in your repository.",
-	Long: ``,
+	Long:  ``,
 }
 
 func init() {

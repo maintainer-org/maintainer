@@ -31,7 +31,7 @@ const (
 var readmeTocCmd = &cobra.Command{
 	Use:   "toc",
 	Short: "Generate TOC for your repository",
-	Long: `TODO`,
+	Long:  `TODO`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := readmeTocRun(); err != nil {
 			log.Fatalf("Error when generating TOC: %s\n", err)
