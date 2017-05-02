@@ -13,6 +13,7 @@ RUN apk add --no-cache git \
     && chmod a+x gh-md-toc \
     && mv gh-md-toc /bin
 
+# Build from scripts/build-for-alpine.sh
 COPY maintainer /bin
 
 VOLUME /workdir
