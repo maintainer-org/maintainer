@@ -24,8 +24,6 @@ import (
 )
 
 const (
-	languageGo string = "Go"
-
 	// startText is the text at the start.
 	startText = `# How to contribute
 
@@ -112,17 +110,11 @@ func getCodingStyle() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	log.Printf("Generating CONTRIBUTING for %s project.\n", *remoteRepo.Language)
-	switch *remoteRepo.Language {
-	case languageGo:
-		return `## Coding Style
 
-The coding style suggested by the Golang community is used in TiDB. See the 
-[style doc](https://github.com/golang/go/wiki/CodeReviewComments) for details.
-
-`, nil
-	default:
-		log.Printf("%s is not supported now to generate coding style guide.", *remoteRepo.Language)
-		return "", nil
+	chooser := NewCodingStyleChooser()
+	text, err := chooser.GetCodingStyle(*remoteRepo.Language)
+	if err != nil {
+		return "", err
 	}
+	return text, nil
 }
