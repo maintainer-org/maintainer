@@ -120,3 +120,4 @@ This way is inspired by [caicloud/cyclone](https://github.com/caicloud/cyclone).
 
 * Thanks [github.com/spf13/cobra](https://github.com/spf13/cobra) for its powerful CLI generator.
 * Thanks [github_changelog_generator](https://github.com/skywinder/github-changelog-generator) which is the source of the idea.
+* Thanks [gophers](https://github.com/egonelbre/gophers) and [johan/1007813](https://gist.github.com/johan/1007813) for the awesome gophers and octocat.
