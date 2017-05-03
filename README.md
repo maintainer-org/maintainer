@@ -1,11 +1,16 @@
-# maintainer
+<h1 align="center">
+        <br>
+        <img width="100" src="docs/img/logo.svg" alt="maintainer">
+        <br>
+        <h4 align="center">Help you to be a qualified maintainer.</h4>
+        <br>
+</h1>
+
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/gaocegege/maintainer)](https://goreportcard.com/report/github.com/gaocegege/maintainer)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/gaocegege/maintainer)
 [![Build Status](https://travis-ci.org/gaocegege/maintainer.svg?branch=master)](https://travis-ci.org/gaocegege/maintainer)
 [![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
-
-:octocat: :man_technologist: Help you to be a qualified maintainer :)
 
 Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTRIBUTING.md and so on based on the repository in GitHub. It makes your repository more contributor-friendly.
 
