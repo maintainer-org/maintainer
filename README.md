@@ -1,6 +1,6 @@
 <h1 align="center">
         <br>
-        <img width="100" src="docs/img/logo.svg" alt="maintainer">
+        <img width="100" src="docs/img/logo.png" alt="maintainer">
         <br>
         <h4 align="center">Help you to be a qualified maintainer.</h4>
         <br>
