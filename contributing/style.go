@@ -17,20 +17,8 @@ package contributing
 import (
 	"fmt"
 	"log"
-)
 
-const (
-	languageGo         string = "Go"
-	languageJava       string = "Java"
-	languageJavaScript string = "JavaScript"
-	languageScala      string = "Scala"
-	languageShell      string = "Shell"
-	languageCpp        string = "C++"
-	languagePython     string = "Python"
-	languagePHP        string = "PHP"
-	languageRuby       string = "Ruby"
-	languageSwift      string = "Swift"
-	languageR          string = "R"
+	"github.com/gaocegege/maintainer/util"
 )
 
 // CodingStyleChooser is the chooser for coding style.
@@ -44,27 +32,27 @@ func NewCodingStyleChooser() *CodingStyleChooser {
 // GetCodingStyle gets the code style text according to language.
 func (c *CodingStyleChooser) GetCodingStyle(language string) (string, error) {
 	switch language {
-	case languageGo:
+	case util.LanguageGo:
 		return c.getGoCodingStyle(), nil
-	case languageJava:
+	case util.LanguageJava:
 		return c.getJavaCodingStyle(), nil
-	case languageJavaScript:
+	case util.LanguageJavaScript:
 		return c.getJavaScriptCodingStyle(), nil
-	case languageScala:
+	case util.LanguageScala:
 		return c.getScalaCodingStyle(), nil
-	case languageShell:
+	case util.LanguageShell:
 		return c.getShellCodingStyle(), nil
-	case languageCpp:
+	case util.LanguageCpp:
 		return c.getCppCodingStyle(), nil
-	case languagePython:
+	case util.LanguagePython:
 		return c.getPythonCodingStyle(), nil
-	case languagePHP:
+	case util.LanguagePHP:
 		return c.getPHPCodingStyle(), nil
-	case languageRuby:
+	case util.LanguageRuby:
 		return c.getRubyCodingStyle(), nil
-	case languageSwift:
+	case util.LanguageSwift:
 		return c.getSwiftCodingStyle(), nil
-	case languageR:
+	case util.LanguageR:
 		return c.getRCodingStyle(), nil
 	default:
 		log.Printf("%s is not supported now to generate coding style guide.", language)
