@@ -92,7 +92,7 @@ People :heart: badges. badge subcommand will recommend badges for you based on w
 
 ## CLI references
 
-[docs/README.md](./docs/README.md)
+[references/README.md](./references/README.md)
 
 ## Development
 
