@@ -15,10 +15,11 @@
 package cmd
 
 import (
-	"errors"
 	"log"
 
 	"github.com/spf13/cobra"
+
+	"github.com/gaocegege/maintainer/badge"
 )
 
 // badgeCmd represents the badge command
@@ -35,7 +36,14 @@ var badgeCmd = &cobra.Command{
 }
 
 func badgeRun() error {
-	return errors.New("Not implemented")
+	recommender, err := badge.NewRecommender()
+	if err != nil {
+		return err
+	}
+	if err = recommender.Recommend(); err != nil {
+		return err
+	}
+	return nil
 }
 
 func init() {
