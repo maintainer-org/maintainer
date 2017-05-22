@@ -19,6 +19,9 @@ import (
 	"os/exec"
 	"strings"
 
+	"sort"
+
+	"github.com/gaocegege/maintainer/config"
 	"github.com/gaocegege/maintainer/util"
 	"github.com/spf13/cobra"
 )
@@ -28,7 +31,38 @@ const (
 	gitLogArgs    string = "log"
 	gitFormatArgs string = "--format='%aN <%aE>'"
 	authorFile    string = "AUTHORS.md"
+
+	orderTime   string = "time"
+	orderCommit string = "commit"
 )
+
+var (
+	order *string
+)
+
+// Contributor is the type for contributor.
+type Contributor struct {
+	Name   string
+	Commit int
+}
+
+// ContributorSlice is the type for slice of contributors.
+type ContributorSlice []*Contributor
+
+// Len is part of sort.Interface.
+func (d ContributorSlice) Len() int {
+	return len(d)
+}
+
+// Swap is part of sort.Interface.
+func (d ContributorSlice) Swap(i, j int) {
+	d[i], d[j] = d[j], d[i]
+}
+
+// Less is part of sort.Interface. We use count as the value to sort by
+func (d ContributorSlice) Less(i, j int) bool {
+	return d[i].Commit < d[j].Commit
+}
 
 // contributorCmd represents the contributor command
 var contributorCmd = &cobra.Command{
@@ -47,6 +81,9 @@ passion to contribute.`,
 
 func init() {
 	RootCmd.AddCommand(contributorCmd)
+
+	order = contributorCmd.PersistentFlags().String(config.Order, orderTime, "The order to compose Authors.md."+
+		"(time, commit)")
 }
 
 // contributorRun runs the real logic to generate AUTHORS.md.
@@ -67,9 +104,39 @@ func contributorRun() error {
 		contributor = strings.Trim(contributor, "'")
 		if _, ok := dict[contributor]; ok != true {
 			dict[contributor] = 1
+		} else {
+			dict[contributor] = dict[contributor] + 1
 		}
 	}
+	return composeOrder(&dict)
+}
 
+// authorHeader returns the header to be written into AUTHORS.md.
+func authorHeader() string {
+	return "# Authors\n\n"
+}
+
+func composeOrder(data *map[string]int) error {
+	contributors := make(ContributorSlice, 0, len(*data))
+	for k, v := range *data {
+		contributors = append(contributors, &Contributor{
+			Name:   k,
+			Commit: v,
+		})
+	}
+
+	switch *order {
+	case orderCommit:
+		sort.Sort(sort.Reverse(contributors))
+	}
+	return writeToFile(contributors)
+}
+
+func orderByCommit(contributors ContributorSlice) error {
+	return nil
+}
+
+func writeToFile(contributors ContributorSlice) error {
 	// Output results to AUTHORS.md.
 	f, err := util.OpenFile(authorFile)
 	if err != nil {
@@ -78,8 +145,8 @@ func contributorRun() error {
 	if _, err := f.WriteString(authorHeader()); err != nil {
 		return err
 	}
-	for k := range dict {
-		if _, err := f.WriteString(k); err != nil {
+	for _, k := range contributors {
+		if _, err := f.WriteString(k.Name); err != nil {
 			return err
 		}
 		if _, err := f.WriteString("\n\n"); err != nil {
@@ -91,9 +158,4 @@ func contributorRun() error {
 		return err
 	}
 	return nil
-}
-
-// authorHeader returns the header to be written into AUTHORS.md.
-func authorHeader() string {
-	return "# Authors\n\n"
 }
