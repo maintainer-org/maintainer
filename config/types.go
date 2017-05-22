@@ -17,4 +17,7 @@ package config
 const (
 	// Token is the name of the config of token.
 	Token string = "token"
+	// Order is the name of the config of order,
+	// which is used in contributor subcommand.
+	Order string = "order"
 )
