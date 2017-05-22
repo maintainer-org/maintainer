@@ -20,6 +20,7 @@ import (
 
 	"log"
 
+	"github.com/gaocegege/maintainer/config"
 	"github.com/gaocegege/maintainer/repo"
 
 	"github.com/spf13/cobra"
@@ -27,7 +28,8 @@ import (
 )
 
 var (
-	cfgFile string
+	cfgFile    string
+	tokenValue *string
 	// Repo stores the information in the local repository.
 	Repo *repo.Repository
 )
@@ -50,6 +52,9 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	tokenValue = RootCmd.PersistentFlags().String(config.Token, "", "The token in GitHub."+
+		"To make more than 50 requests per hour the GitHub token is required."+
+		"You can generate it at: https://github.com/settings/tokens/new.")
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.maintainer.yaml)")
 }
 

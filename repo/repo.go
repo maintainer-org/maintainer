@@ -18,7 +18,8 @@ import (
 	"errors"
 	"fmt"
 	"os/exec"
-	"regexp"
+
+	"github.com/gaocegege/maintainer/util"
 )
 
 const (
@@ -89,7 +90,7 @@ func getNameAndRepoName() (string, string, error) {
 // getNameAndRepoName gets the name and project from local repository.
 func getNameAndRepoNameFromRemote(remoteStr string) (string, string, error) {
 	for _, regEx := range gitRemotePattern {
-		paramsMap := getParams(regEx, remoteStr)
+		paramsMap := util.GetParams(regEx, remoteStr)
 		name, ok1 := paramsMap["user"]
 		project, ok2 := paramsMap["project"]
 		if ok1 != true || ok2 != true {
@@ -98,20 +99,4 @@ func getNameAndRepoNameFromRemote(remoteStr string) (string, string, error) {
 		return name, project, nil
 	}
 	return "", "", errNameOrProjectNotExists
-}
-
-// getParams get the params from regexp.
-// See http://stackoverflow.com/questions/30483652/how-to-get-capturing-group-functionality-in-golang-regular-expressions.
-func getParams(regEx, url string) (paramsMap map[string]string) {
-
-	var compRegEx = regexp.MustCompile(regEx)
-	match := compRegEx.FindStringSubmatch(url)
-
-	paramsMap = make(map[string]string)
-	for i, name := range compRegEx.SubexpNames() {
-		if i > 0 && i <= len(match) {
-			paramsMap[name] = match[i]
-		}
-	}
-	return
 }
