@@ -15,15 +15,20 @@
 package cmd
 
 import (
+	"context"
+	"errors"
 	"log"
-	"os/exec"
-	"strings"
 
-	"sort"
+	"golang.org/x/oauth2"
+
+	"fmt"
 
 	"github.com/gaocegege/maintainer/config"
+	"github.com/gaocegege/maintainer/repo"
 	"github.com/gaocegege/maintainer/util"
+	"github.com/google/go-github/github"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 const (
@@ -37,32 +42,13 @@ const (
 )
 
 var (
+	contributorPattern = []string{
+		"(?P<user>.*) <(?P<email>.*@.*)>",
+	}
+	errNameOrEmailNotExists = errors.New("Couldn't get the name or email of one contributor")
+
 	order *string
 )
-
-// Contributor is the type for contributor.
-type Contributor struct {
-	Name   string
-	Commit int
-}
-
-// ContributorSlice is the type for slice of contributors.
-type ContributorSlice []*Contributor
-
-// Len is part of sort.Interface.
-func (d ContributorSlice) Len() int {
-	return len(d)
-}
-
-// Swap is part of sort.Interface.
-func (d ContributorSlice) Swap(i, j int) {
-	d[i], d[j] = d[j], d[i]
-}
-
-// Less is part of sort.Interface. We use count as the value to sort by
-func (d ContributorSlice) Less(i, j int) bool {
-	return d[i].Commit < d[j].Commit
-}
 
 // contributorCmd represents the contributor command
 var contributorCmd = &cobra.Command{
@@ -82,33 +68,55 @@ passion to contribute.`,
 func init() {
 	RootCmd.AddCommand(contributorCmd)
 
-	order = contributorCmd.PersistentFlags().String(config.Order, orderTime, "The order to compose Authors.md."+
-		"(time, commit)")
+	order = contributorCmd.PersistentFlags().String(config.Order, orderCommit, "The order to compose Authors.md."+
+		"(commit)")
 }
 
 // contributorRun runs the real logic to generate AUTHORS.md.
 func contributorRun() error {
-	// git log --format='%aN <%aE>'.
-	gitLogCmd := exec.Command(gitCmd, gitLogArgs, gitFormatArgs)
-	output, err := gitLogCmd.Output()
+	repo, err := repo.NewRepository()
 	if err != nil {
-		return err
+		log.Panicf("Error when read the information from local repository: %s\n", err)
 	}
 
-	// Parse output and remove duplicates.
-	outputStr := string(output)
-	outputStr = outputStr[:len(outputStr)-1]
-	contributors := strings.Split(outputStr, "\n")
-	dict := make(map[string]int)
-	for _, contributor := range contributors {
-		contributor = strings.Trim(contributor, "'")
-		if _, ok := dict[contributor]; ok != true {
-			dict[contributor] = 1
-		} else {
-			dict[contributor] = dict[contributor] + 1
-		}
+	token := viper.GetString(config.Token)
+	// Override token in CLI.
+	if *tokenValue != "" {
+		log.Println("Found token in flag, override it.")
+		token = *tokenValue
 	}
-	return composeOrder(&dict)
+	ctx := context.Background()
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: token},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+
+	client := github.NewClient(tc)
+	contributors := []*github.Contributor{}
+	i := 1
+	for {
+		contributorsBuf, _, err := client.Repositories.ListContributors(repo.Owner, repo.Name, &github.ListContributorsOptions{
+			// See https://developer.github.com/v3/repos/#list-contributors
+			// Anon: "true",
+			ListOptions: github.ListOptions{
+				Page:    i,
+				PerPage: 100,
+			},
+		})
+		if err != nil {
+			return err
+		}
+		if len(contributorsBuf) == 0 {
+			break
+		}
+		contributors = append(contributors, contributorsBuf...)
+		i = i + 1
+	}
+
+	if err := composeByOrder(contributors); err != nil {
+		return err
+	}
+	return nil
 }
 
 // authorHeader returns the header to be written into AUTHORS.md.
@@ -116,27 +124,11 @@ func authorHeader() string {
 	return "# Authors\n\n"
 }
 
-func composeOrder(data *map[string]int) error {
-	contributors := make(ContributorSlice, 0, len(*data))
-	for k, v := range *data {
-		contributors = append(contributors, &Contributor{
-			Name:   k,
-			Commit: v,
-		})
-	}
-
-	switch *order {
-	case orderCommit:
-		sort.Sort(sort.Reverse(contributors))
-	}
+func composeByOrder(contributors []*github.Contributor) error {
 	return writeToFile(contributors)
 }
 
-func orderByCommit(contributors ContributorSlice) error {
-	return nil
-}
-
-func writeToFile(contributors ContributorSlice) error {
+func writeToFile(contributors []*github.Contributor) error {
 	// Output results to AUTHORS.md.
 	f, err := util.OpenFile(authorFile)
 	if err != nil {
@@ -145,8 +137,8 @@ func writeToFile(contributors ContributorSlice) error {
 	if _, err := f.WriteString(authorHeader()); err != nil {
 		return err
 	}
-	for _, k := range contributors {
-		if _, err := f.WriteString(k.Name); err != nil {
+	for _, contributor := range contributors {
+		if _, err := f.WriteString(fmt.Sprintf("[@%s](%s)", *contributor.Login, *contributor.HTMLURL)); err != nil {
 			return err
 		}
 		if _, err := f.WriteString("\n\n"); err != nil {

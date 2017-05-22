@@ -28,10 +28,6 @@ const (
 	changelogGeneratorCmd string = "github_changelog_generator"
 )
 
-var (
-	tokenValue *string
-)
-
 // changelogCmd represents the changelog command
 var changelogCmd = &cobra.Command{
 	Use:   "changelog",
@@ -51,10 +47,6 @@ In the future, maintainer will support install this dependency automatically.`,
 
 func init() {
 	RootCmd.AddCommand(changelogCmd)
-
-	tokenValue = changelogCmd.PersistentFlags().String(config.Token, "", "The token in GitHub."+
-		"To make more than 50 requests per hour the GitHub token is required."+
-		"You can generate it at: https://github.com/settings/tokens/new.")
 }
 
 func changelogRun() error {
