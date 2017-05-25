@@ -138,10 +138,10 @@ func writeToFile(contributors []*github.Contributor) error {
 		return err
 	}
 	for _, contributor := range contributors {
-		if _, err := f.WriteString(fmt.Sprintf("[@%s](%s)", *contributor.Login, *contributor.HTMLURL)); err != nil {
+		if _, err := f.WriteString(fmt.Sprintf("* [@%s](%s)", *contributor.Login, *contributor.HTMLURL)); err != nil {
 			return err
 		}
-		if _, err := f.WriteString("\n\n"); err != nil {
+		if _, err := f.WriteString("\n"); err != nil {
 			return err
 		}
 	}
