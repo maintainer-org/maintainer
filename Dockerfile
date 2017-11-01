@@ -1,5 +1,5 @@
 FROM alpine:3.5
-MAINTAINER Ce Gao(gaocegege) <gaocegege@hotmail.com>
+LABEL maintainer="Ce Gao(gaocegege) <gaocegege@hotmail.com>"
 
 RUN apk add --no-cache git \
     bash \
