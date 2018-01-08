@@ -8,12 +8,12 @@ services:
 go_import_path: github.com/gaocegege/maintainer
 
 go:
-  - 1.8
+  - 1.9
 
-script: 
+script:
   - go install .
   - maintainer --help
 
 # Build and push the Docker image to Docker Hub if the build is in master branch.
-after_script: 
+after_script:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/master-build-in-travis.sh; fi'
