@@ -63,7 +63,6 @@ func (i *imp) getReport(username string, begin, end time.Time) (string, error) {
 		}
 		for _, event := range events {
 			eventTime := event.CreatedAt
-			log.Println("ALL", begin, eventTime, end)
 			if eventTime == nil {
 				continue
 			}
@@ -73,7 +72,6 @@ func (i *imp) getReport(username string, begin, end time.Time) (string, error) {
 				shouldBreak = true
 				break
 			}
-			log.Println(begin, eventTime, end)
 			res = append(res, i.ComposeEvent(event))
 		}
 		if shouldBreak {
