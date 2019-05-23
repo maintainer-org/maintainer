@@ -62,5 +62,5 @@ var dailyCmd = &cobra.Command{
 func init() {
 	userCmd.AddCommand(dailyCmd)
 
-	dailyFile = userCmd.PersistentFlags().String("output", "./daily.md", "Output file")
+	dailyFile = dailyCmd.Flags().String("output", "./daily.md", "Output file")
 }

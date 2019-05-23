@@ -14,7 +14,7 @@ import (
 type Interface interface {
 	GetDaily(username string, date time.Time) (string, error)
 	GetDailyToday(username string) (string, error)
-	GetReport(username string, begin, end time.Time) (string, error)
+	GetSummary(username string, begin, end time.Time) (string, error)
 }
 
 type imp struct {
@@ -33,18 +33,23 @@ func New(token string) Interface {
 	}
 }
 
-func (i *imp) GetReport(username string, begin, end time.Time) (string, error) {
+func (i *imp) GetSummary(username string, begin, end time.Time) (string, error) {
+	b := begin.Local().Truncate(24 * time.Hour)
+	e := end.Local().Truncate(24 * time.Hour)
+	return i.getReport(username, b, e)
+}
+
+func (i *imp) getReport(username string, begin, end time.Time) (string, error) {
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: i.token},
 	)
 	tc := oauth2.NewClient(ctx, ts)
 	client := github.NewClient(tc)
-	index := 1
 	shouldBreak := false
 	log.SetPrefix("daily-generator")
 	res := []string{}
-	for {
+	for index := 1; index <= 10; index++ {
 		log.Printf("Getting events page %d from Github", index)
 		events, response, err := client.Activity.ListEventsPerformedByUser(username, false, &github.ListOptions{
 			Page: index,
@@ -58,6 +63,7 @@ func (i *imp) GetReport(username string, begin, end time.Time) (string, error) {
 		}
 		for _, event := range events {
 			eventTime := event.CreatedAt
+			log.Println("ALL", begin, eventTime, end)
 			if eventTime == nil {
 				continue
 			}
@@ -67,12 +73,12 @@ func (i *imp) GetReport(username string, begin, end time.Time) (string, error) {
 				shouldBreak = true
 				break
 			}
+			log.Println(begin, eventTime, end)
 			res = append(res, i.ComposeEvent(event))
 		}
 		if shouldBreak {
 			break
 		}
-		index++
 	}
 
 	// Avoid dup.
@@ -86,11 +92,11 @@ func (i *imp) GetReport(username string, begin, end time.Time) (string, error) {
 }
 
 func (i *imp) GetDailyToday(username string) (string, error) {
-	return i.GetReport(username, beginningTime(), beginningTime().Add(24*time.Hour))
+	return i.getReport(username, beginningTime(), beginningTime().Add(24*time.Hour))
 }
 
 func (i *imp) GetDaily(username string, date time.Time) (string, error) {
-	return i.GetReport(username, date, date.Add(24*time.Hour))
+	return i.getReport(username, date, date.Add(24*time.Hour))
 }
 
 func (i imp) ComposeEvent(event *github.Event) string {
