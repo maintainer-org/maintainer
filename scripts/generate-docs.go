@@ -25,7 +25,7 @@ import (
 )
 
 const (
-	outputDir     string = "docs"
+	outputDir     string = "references"
 	maintainerDoc string = "README.md"
 )
 
