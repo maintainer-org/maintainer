@@ -17,8 +17,8 @@ package cmd
 import (
 	"log"
 
-	"github.com/gaocegege/maintainer/contributing"
-	"github.com/gaocegege/maintainer/util"
+	"github.com/gaocegege/maintainer/pkg/contributing"
+	"github.com/gaocegege/maintainer/pkg/util"
 
 	"github.com/spf13/cobra"
 )

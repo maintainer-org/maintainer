@@ -17,18 +17,17 @@ package cmd
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
 
-	"golang.org/x/oauth2"
-
-	"fmt"
-
-	"github.com/gaocegege/maintainer/config"
-	"github.com/gaocegege/maintainer/repo"
-	"github.com/gaocegege/maintainer/util"
 	"github.com/google/go-github/github"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"golang.org/x/oauth2"
+
+	"github.com/gaocegege/maintainer/config"
+	"github.com/gaocegege/maintainer/pkg/repo"
+	"github.com/gaocegege/maintainer/pkg/util"
 )
 
 const (

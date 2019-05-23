@@ -19,7 +19,7 @@ import (
 
 	"fmt"
 
-	"github.com/gaocegege/maintainer/repo"
+	"github.com/gaocegege/maintainer/pkg/repo"
 	"github.com/google/go-github/github"
 )
 

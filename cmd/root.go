@@ -16,15 +16,14 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-
 	"log"
-
-	"github.com/gaocegege/maintainer/config"
-	"github.com/gaocegege/maintainer/repo"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"github.com/gaocegege/maintainer/config"
+	"github.com/gaocegege/maintainer/pkg/repo"
 )
 
 var (
