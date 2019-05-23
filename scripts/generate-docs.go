@@ -21,6 +21,7 @@ import (
 	"strings"
 
 	"github.com/gaocegege/maintainer/cmd"
+	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 )
 
@@ -50,9 +51,13 @@ func main() {
 		log.Fatalf("Error when create docs for %s: %s", cmd.RootCmd.Name(), err)
 	}
 
+	createDocs(cmd.RootCmd)
+}
+
+func createDocs(cmd *cobra.Command) {
 	// Create docs for subcommand.
 	// Notice: There are no nested subcommands so no need to generate docs recursively.
-	for _, clicmd := range cmd.RootCmd.Commands() {
+	for _, clicmd := range cmd.Commands() {
 		fileName := strings.Replace(clicmd.CommandPath(), " ", "_", -1)
 		f, err := os.Create(fmt.Sprintf("%s/%s.md", outputDir, fileName))
 		if err != nil {
@@ -61,5 +66,6 @@ func main() {
 		if err := doc.GenMarkdown(clicmd, f); err != nil {
 			log.Fatalf("Error when create docs for %s: %s", clicmd.Name(), err)
 		}
+		createDocs(clicmd)
 	}
 }
