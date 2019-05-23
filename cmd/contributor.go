@@ -80,7 +80,7 @@ func contributorRun() error {
 
 	token := viper.GetString(config.Token)
 	// Override token in CLI.
-	if *tokenValue != "" {
+	if tokenValue != nil && *tokenValue != "" {
 		log.Println("Found token in flag, override it.")
 		token = *tokenValue
 	}
