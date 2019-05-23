@@ -1,0 +1,22 @@
+- [Public][IssueComment] https://github.com/dyweb/papers-notebook/issues/140 Single Path One-Shot Neural Architecture Search with Uniform Sampling
+- [Public][IssueComment] https://github.com/dyweb/papers-notebook/issues/143 ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware
+- [Public][IssueComment] https://github.com/dyweb/papers-notebook/issues/144 Random Search and Reproducibility for Neural Architecture Search
+- [Public][IssueComment] https://github.com/kubeflow/katib/issues/565 ignore Retain field
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/492 chore: Refactor nasenvelopenet
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/528 feat(trial): Refactor trial controller and add basic test cases
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/558 Implement GetExperimentInDB
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/560 chore: Add code coverage test
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/561 feat(experiment-validator): Inject client
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/567 fix: Check if the deletion time is nil or zero
+- [Public][IssueComment] https://github.com/kubeflow/katib/pull/568 refactor: Unify the interface
+- [Public][IssueComment] https://github.com/kubeflow/mxnet-operator/pull/37 add travis.yml to mxnet-operator
+- [Public][IssueComment] https://github.com/kubernetes-incubator/metrics-server/issues/270 [bug] Unknown current metrics but HPA is actually working
+- [Public][Issue] https://github.com/kubernetes-incubator/metrics-server/issues/270 [bug] Unknown current metrics but HPA is actually working
+- [Public][PullRequestReview] https://github.com/kubeflow/katib/pull/558 Implement GetExperimentInDB
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/556 WIP: feat(experiment): Add test cases
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/560 chore: Add code coverage test
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/561 feat(experiment-validator): Inject client
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/563 WIP feat(experiment): Add more test cases
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/567 fix: Check if the deletion time is nil or zero
+- [Public][PullRequest] https://github.com/kubeflow/katib/pull/568 refactor: Unify the interface
+- [Public][PullRequest] https://github.com/sjtug/SJTUThesis/pull/418 Makefile: count English characters if English template enabled

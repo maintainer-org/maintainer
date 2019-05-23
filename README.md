@@ -87,6 +87,19 @@ contributor subcommand will generate AUTHORS just like [moby/moby](https://githu
 
 See [AUTHORS.md](./AUTHORS.md) as an example.
 
+### Generate Personal Daily Report or Summary
+
+user daily and user summary subcommands will generate daily report or summary for the given user.
+
+```
+maintainer user --username gaocegege daily
+maintainer user --username gaocegege summary --begin 2019-05-20 --end 2019-05-22
+```
+
+See [daily.md](./daily.md) or [summary.md](./summary.md) as an example.
+
+Please notice that GitHub only shows the first 300 events for one user which is a core limitation for this feature.
+
 ### Generate README.md related text
 
 readme subcommand contains some subcommands:
