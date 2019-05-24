@@ -120,7 +120,7 @@ func contributorRun() error {
 
 // authorHeader returns the header to be written into AUTHORS.md.
 func authorHeader() string {
-	return "# Authors\n\nThis list is sorted by the number of commits per contributor in descending order.\n\n"
+	return "# Authors\n\nThis list is sorted by the number of commits per contributor in _descending_ order.\n\n"
 }
 
 // authorTableHeader returns the table header to be written into AUTHORS.md.
