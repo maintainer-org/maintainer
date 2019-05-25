@@ -120,7 +120,12 @@ func contributorRun() error {
 
 // authorHeader returns the header to be written into AUTHORS.md.
 func authorHeader() string {
-	return "# Authors\n\nThis list is sorted by the number of commits per contributor in descending order.\n\n"
+	return "# Authors\n\nThis list is sorted by the number of commits per contributor in _descending_ order.\n\n"
+}
+
+// authorTableHeader returns the table header to be written into AUTHORS.md.
+func authorTableHeader() string {
+	return "Avatar|Contributor|Contributions\n:-:|---|:-:\n"
 }
 
 func composeByOrder(contributors []*github.Contributor) error {
@@ -136,8 +141,18 @@ func writeToFile(contributors []*github.Contributor) error {
 	if _, err := f.WriteString(authorHeader()); err != nil {
 		return err
 	}
+	if _, err := f.WriteString(authorTableHeader()); err != nil {
+		return err
+	}
 	for _, contributor := range contributors {
-		if _, err := f.WriteString(fmt.Sprintf("* [@%s](%s)", *contributor.Login, *contributor.HTMLURL)); err != nil {
+		if _, err := f.WriteString(fmt.Sprintf(
+			"<img class='float-left rounded-1' src='%s' width='36' height='36' alt='@%s'>|[@%s](%s)|%d",
+			*contributor.AvatarURL,
+			*contributor.Login,
+			*contributor.Login,
+			*contributor.HTMLURL,
+			*contributor.Contributions,
+		)); err != nil {
 			return err
 		}
 		if _, err := f.WriteString("\n"); err != nil {
