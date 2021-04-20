@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/gaocegege/maintainer/cmd"
+import "github.com/maintainer-org/maintainer/cmd"
 
 func main() {
 	cmd.Execute()

@@ -2,7 +2,7 @@
 
 ROOT=$(dirname "${BASH_SOURCE}")/..
 
-CONTAINER_DIR="/go/src/github.com/gaocegege/maintainer"
+CONTAINER_DIR="/go/src/github.com/maintainer-org/maintainer"
 
 cd ${ROOT}
 

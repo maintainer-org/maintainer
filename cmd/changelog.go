@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/gaocegege/maintainer/pkg/config"
+	"github.com/maintainer-org/maintainer/pkg/config"
 )
 
 const (

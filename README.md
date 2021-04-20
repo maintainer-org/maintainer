@@ -7,8 +7,8 @@
 </h1>
 
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/gaocegege/maintainer)](https://goreportcard.com/report/github.com/gaocegege/maintainer)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/gaocegege/maintainer)
+[![Go Report Card](https://goreportcard.com/badge/github.com/maintainer-org/maintainer)](https://goreportcard.com/report/github.com/maintainer-org/maintainer)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/maintainer-org/maintainer)
 [![Build Status](https://travis-ci.org/gaocegege/maintainer.svg?branch=master)](https://travis-ci.org/gaocegege/maintainer)
 [![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
 [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/gaocegege/maintainer.svg)](https://libraries.io/github/gaocegege/maintainer)
@@ -19,7 +19,7 @@ Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTR
 ## Installation
 
 ```text
-$ go get github.com/gaocegege/maintainer
+$ go get github.com/maintainer-org/maintainer
 $ maintainer --help
 maintainer is a CLI app to help you to generate AUTHORS, CONTRIBUTING.md, CHANGELOG.md and so on.
 
