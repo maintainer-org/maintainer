@@ -18,9 +18,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/gaocegege/maintainer/pkg/config"
-	"github.com/gaocegege/maintainer/pkg/user"
-	"github.com/gaocegege/maintainer/pkg/util"
+	"github.com/maintainer-org/maintainer/pkg/config"
+	"github.com/maintainer-org/maintainer/pkg/user"
+	"github.com/maintainer-org/maintainer/pkg/util"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"github.com/gaocegege/maintainer/pkg/util"
+	"github.com/maintainer-org/maintainer/pkg/util"
 )
 
 const (

@@ -5,7 +5,7 @@ sudo: required
 services:
   - docker
 
-go_import_path: github.com/gaocegege/maintainer
+go_import_path: github.com/maintainer-org/maintainer
 
 go:
   - 1.9

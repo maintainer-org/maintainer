@@ -20,7 +20,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/gaocegege/maintainer/cmd"
+	"github.com/maintainer-org/maintainer/cmd"
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 )
