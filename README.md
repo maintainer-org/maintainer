@@ -9,10 +9,9 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/maintainer-org/maintainer)](https://goreportcard.com/report/github.com/maintainer-org/maintainer)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/maintainer-org/maintainer)
-[![Build Status](https://travis-ci.org/gaocegege/maintainer.svg?branch=master)](https://travis-ci.org/gaocegege/maintainer)
-[![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/gaocegege/maintainer/)
-[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/gaocegege/maintainer.svg)](https://libraries.io/github/gaocegege/maintainer)
-[![Gitter](https://badges.gitter.im/gaocegege/maintainer.svg)](https://gitter.im/gaocegege/maintainer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![](https://img.shields.io/badge/docker-supported-blue.svg)](https://hub.docker.com/r/maintainer-org/maintainer/)
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/maintainer-org/maintainer.svg)](https://libraries.io/github/maintainer-org/maintainer)
+[![Gitter](https://badges.gitter.im/maintainer-org/maintainer.svg)](https://gitter.im/maintainer-org/maintainer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Maintainer is a CLI app which helps you to generate AUTHORS, CHANGELOG.md, CONTRIBUTING.md and so on based on the repository in GitHub. It makes your repository more contributor-friendly.
 

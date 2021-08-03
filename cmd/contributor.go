@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/google/go-github/github"
+	"github.com/google/go-github/v37/github"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"golang.org/x/oauth2"
@@ -94,14 +94,15 @@ func contributorRun() error {
 	contributors := []*github.Contributor{}
 	i := 1
 	for {
-		contributorsBuf, _, err := client.Repositories.ListContributors(repo.Owner, repo.Name, &github.ListContributorsOptions{
-			// See https://developer.github.com/v3/repos/#list-contributors
-			// Anon: "true",
-			ListOptions: github.ListOptions{
-				Page:    i,
-				PerPage: 100,
-			},
-		})
+		contributorsBuf, _, err := client.Repositories.ListContributors(
+			context.TODO(), repo.Owner, repo.Name, &github.ListContributorsOptions{
+				// See https://developer.github.com/v3/repos/#list-contributors
+				// Anon: "true",
+				ListOptions: github.ListOptions{
+					Page:    i,
+					PerPage: 100,
+				},
+			})
 		if err != nil {
 			return err
 		}
