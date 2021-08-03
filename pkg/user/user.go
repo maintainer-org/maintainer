@@ -7,7 +7,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/google/go-github/github"
+	"github.com/google/go-github/v37/github"
 	"golang.org/x/oauth2"
 )
 
@@ -51,14 +51,15 @@ func (i *imp) getReport(username string, begin, end time.Time) (string, error) {
 	res := []string{}
 	for index := 1; index <= 10; index++ {
 		log.Printf("Getting events page %d from Github", index)
-		events, response, err := client.Activity.ListEventsPerformedByUser(username, false, &github.ListOptions{
-			Page: index,
-		})
+		events, response, err := client.Activity.ListEventsPerformedByUser(
+			context.TODO(), username, false, &github.ListOptions{
+				Page: index,
+			})
 		if err != nil {
 			return "", err
 		}
 		if response.StatusCode != 200 {
-			return "", fmt.Errorf("Failed to get the events for the user: %s",
+			return "", fmt.Errorf("failed to get the events for the user: %s",
 				response.Status)
 		}
 		for _, event := range events {
@@ -142,7 +143,7 @@ func removeDuplicates(elements []string) []string {
 	result := []string{}
 
 	for v := range elements {
-		if encountered[elements[v]] == true {
+		if encountered[elements[v]] {
 			// Do not add duplicate.
 		} else {
 			// Record this element as an encountered element.

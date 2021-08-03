@@ -15,12 +15,12 @@
 package contributing
 
 import (
+	"context"
+	"fmt"
 	"log"
 
-	"fmt"
-
+	"github.com/google/go-github/v37/github"
 	"github.com/maintainer-org/maintainer/pkg/repo"
-	"github.com/google/go-github/github"
 )
 
 const (
@@ -106,7 +106,8 @@ func getCodingStyle() (string, error) {
 		log.Panicf("Error when read the information from local repository: %s\n", err)
 	}
 	client := github.NewClient(nil)
-	remoteRepo, _, err := client.Repositories.Get(repo.Owner, repo.Name)
+	remoteRepo, _, err := client.Repositories.Get(
+		context.TODO(), repo.Owner, repo.Name)
 	if err != nil {
 		return "", err
 	}
