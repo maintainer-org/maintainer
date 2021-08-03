@@ -27,6 +27,8 @@ N/A
 
 The template could be incompatible. And we have to set up a migration plan.
 
+It's hard to migrate via coding, maybe we can have the migrate plan in document.
+
 ## Implementation
 
 N/A
