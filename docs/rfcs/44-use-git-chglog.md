@@ -1,6 +1,6 @@
 - Author: Xuanwo <github@xuanwo.io>
 - Start Date: 2021-08-03
-- RFC PR: [maintainer-org/maintainer#0](https://github.com/maintainer-org/maintainer/issues/0)
+- RFC PR: [maintainer-org/maintainer#44](https://github.com/maintainer-org/maintainer/pull/44)
 - Tracking Issue: [maintainer-org/maintainer#0](https://github.com/maintainer-org/maintainer/issues/0)
 
 # RFC-44: Use git-chglog
