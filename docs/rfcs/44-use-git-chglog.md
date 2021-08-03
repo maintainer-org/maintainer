@@ -3,7 +3,7 @@
 - RFC PR: [maintainer-org/maintainer#0](https://github.com/maintainer-org/maintainer/issues/0)
 - Tracking Issue: [maintainer-org/maintainer#0](https://github.com/maintainer-org/maintainer/issues/0)
 
-# RFC-0: Use git-chglog
+# RFC-44: Use git-chglog
 
 ## Background
 
