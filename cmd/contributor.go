@@ -47,6 +47,7 @@ var (
 	errNameOrEmailNotExists = errors.New("Couldn't get the name or email of one contributor")
 
 	order *string
+	ignoreContributors []string
 )
 
 // contributorCmd represents the contributor command
@@ -69,6 +70,7 @@ func init() {
 
 	order = contributorCmd.PersistentFlags().String(config.Order, orderCommit, "The order to compose Authors.md."+
 		"(commit)")
+	contributorCmd.PersistentFlags().StringSliceVar(&ignoreContributors, "ignore-contributors", nil, "List of contributors to ignore")
 }
 
 // contributorRun runs the real logic to generate AUTHORS.md.
@@ -112,6 +114,8 @@ func contributorRun() error {
 		contributors = append(contributors, contributorsBuf...)
 		i = i + 1
 	}
+
+	contributors = filterIgnoredContributors(contributors)
 
 	if err := composeByOrder(contributors); err != nil {
 		return err
@@ -165,4 +169,24 @@ func writeToFile(contributors []*github.Contributor) error {
 		return err
 	}
 	return nil
+}
+
+// filterIgnoredContributors filters out contributors specified to be ignored.
+func filterIgnoredContributors(contributors []*github.Contributor) []*github.Contributor {
+    var filteredContributors []*github.Contributor
+    ignoredMap := make(map[string]bool)
+
+    // Create a map for quick lookup
+    for _, contributor := range ignoreContributors {
+        ignoredMap[contributor] = true
+    }
+
+    // Filter contributors
+    for _, contributor := range contributors {
+        if !ignoredMap[*contributor.Login] {
+            filteredContributors = append(filteredContributors, contributor)
+        }
+    }
+
+    return filteredContributors
 }
